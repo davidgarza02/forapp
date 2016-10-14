@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="white">#ffffff</color>
+    <color name="background_cardviews">#e7e7e7</color>
+    <color name="gray_divider">#B3B3B3</color>
+
+    <color name="green_add">#216900</color>
+    <color name="red_remove">#640000</color>
+    <color name="black_remove_all">#0e0000</color>
+
+</resources>
