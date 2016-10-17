@@ -9,10 +9,9 @@ import android.widget.TextView;
 
 import com.davidgarza.forapp.R;
 import com.davidgarza.forapp.db.model.Item;
+import com.davidgarza.forapp.db.model.Recipe;
 
-import java.lang.reflect.Array;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,11 +22,11 @@ import io.realm.RealmResults;
 /**
  * Created by davidgarza on 09/10/16.
  */
-public class CupboardRecyclerAdapter extends RecyclerView.Adapter<CupboardRecyclerAdapter.ViewHolder> {
+public class FoodRecyclerAdapter extends RecyclerView.Adapter<FoodRecyclerAdapter.ViewHolder> {
     private Activity activity;
     private RealmResults<Item> result;
     private DecimalFormat decimalFormat;
-    public CupboardRecyclerAdapter(Activity activity) {
+    public FoodRecyclerAdapter(Activity activity) {
         this.activity = activity;
 
         Realm realm = Realm.getDefaultInstance();
@@ -40,15 +39,21 @@ public class CupboardRecyclerAdapter extends RecyclerView.Adapter<CupboardRecycl
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(activity).inflate(R.layout.cupboard_recycler_item,parent,false);
+        View view = LayoutInflater.from(activity).inflate(R.layout.food_recycler_item,parent,false);
 
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.itemName.setText(result.get(position).getName());
-        holder.itemQuantity.setText(String.valueOf(decimalFormat.format(result.get(position).getQuantity())));
+        Item item = result.get(position);
+        holder.itemName.setText(item.getName());
+        holder.itemType.setText(item.getItemType().getName());
+
+        Realm realm = Realm.getDefaultInstance();
+        RealmQuery<Recipe> query = realm.where(Recipe.class).equalTo("items.name", item.getName());
+        RealmResults<Recipe> result = query.findAll();
+        holder.numberRecipes.setText(String.valueOf(result.size()));
     }
 
     @Override
@@ -58,7 +63,8 @@ public class CupboardRecyclerAdapter extends RecyclerView.Adapter<CupboardRecycl
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         @BindView(R.id.item_name) TextView itemName;
-        @BindView(R.id.item_quantity) TextView itemQuantity;
+        @BindView(R.id.item_type) TextView itemType;
+        @BindView(R.id.number_recipes) TextView numberRecipes;
 
         public ViewHolder(View itemView) {
             super(itemView);

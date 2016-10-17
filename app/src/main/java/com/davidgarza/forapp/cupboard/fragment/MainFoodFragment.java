@@ -2,7 +2,6 @@ package com.davidgarza.forapp.cupboard.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.davidgarza.forapp.R;
-import com.davidgarza.forapp.cupboard.CupboardRecyclerAdapter;
+import com.davidgarza.forapp.cupboard.FoodRecyclerAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,7 +17,7 @@ import butterknife.ButterKnife;
 /**
  * Created by davidgarza on 09/10/16.
  */
-public class MainCupboardFragment extends Fragment {
+public class MainFoodFragment extends Fragment {
     @BindView(R.id.recycler_inventory) RecyclerView recyclerInventory;
 
     @Override
@@ -34,6 +33,6 @@ public class MainCupboardFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerInventory.setLayoutManager(linearLayoutManager);
-        recyclerInventory.setAdapter(new CupboardRecyclerAdapter(getActivity()));
+        recyclerInventory.setAdapter(new FoodRecyclerAdapter(getActivity()));
     }
 }

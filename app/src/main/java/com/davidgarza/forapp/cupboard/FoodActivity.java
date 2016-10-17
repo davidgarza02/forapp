@@ -6,13 +6,14 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.davidgarza.forapp.R;
 import com.davidgarza.forapp.cupboard.fragment.AddNewItemFragment;
-import com.davidgarza.forapp.cupboard.fragment.MainCupboardFragment;
+import com.davidgarza.forapp.cupboard.fragment.MainFoodFragment;
 
 import butterknife.BindColor;
 import butterknife.BindString;
@@ -23,7 +24,7 @@ import butterknife.OnClick;
 /**
  * Created by davidgarza on 08/10/16.
  */
-public class MyCupBoardActivity extends AppCompatActivity{
+public class FoodActivity extends AppCompatActivity{
     @BindString(R.string.menu_my_cupboard) String strMyCupboard;
     @BindString(R.string.adding_new_item) String strAddingNewItem;
     @BindColor(R.color.white) int clrWhite;
@@ -99,7 +100,7 @@ public class MyCupBoardActivity extends AppCompatActivity{
 
         switch(index){
             case 0:
-                fragment = new MainCupboardFragment();
+                fragment = new MainFoodFragment();
                 setToolbarTitle(strMyCupboard);
                 if (!firstAppeareance)
                     fragmentTransaction.setCustomAnimations(R.animator.enter_from_left,R.animator.exit_to_right,
@@ -115,7 +116,7 @@ public class MyCupBoardActivity extends AppCompatActivity{
                 hideFab();
                 break;
             default:
-                fragment = new MainCupboardFragment();
+                fragment = new MainFoodFragment();
                 break;
         }
 
@@ -129,6 +130,29 @@ public class MyCupBoardActivity extends AppCompatActivity{
         cupboardToolbar.setTitleTextColor(clrWhite);
         cupboardToolbar.setTitle(strMyCupboard);
         setSupportActionBar(cupboardToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (currentFragment > 0){
+            showFragment(0);
+        }else{
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            if (currentFragment > 0){
+                showFragment(0);
+            }else{
+                finish();
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void setToolbarTitle(String title){

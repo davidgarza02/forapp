@@ -2,27 +2,28 @@ package com.davidgarza.forapp.cupboard.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.davidgarza.forapp.R;
-import com.davidgarza.forapp.cupboard.MyCupBoardActivity;
+import com.davidgarza.forapp.cupboard.FoodActivity;
 import com.davidgarza.forapp.db.model.Item;
+import com.davidgarza.forapp.db.model.ItemType;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.realm.Realm;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
 
 /**
  * Created by davidgarza on 09/10/16.
@@ -31,7 +32,6 @@ public class AddNewItemFragment extends Fragment {
     @BindView(R.id.item_type_spinner) Spinner itemTypeSpinner;
     @BindView(R.id.button_save) Button buttonSave;
     @BindView(R.id.et_item_name) EditText itemName;
-    @BindView(R.id.et_item_quantity) EditText itemQuantity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,8 +43,17 @@ public class AddNewItemFragment extends Fragment {
     }
 
     private void setupSpinner() {
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.planets_array, android.R.layout.simple_spinner_item);
+        List<String> optionsList = new ArrayList<>();
+        Realm realm = Realm.getDefaultInstance();
+        RealmQuery<ItemType> query = realm.where(ItemType.class);
+        RealmResults<ItemType> result = query.findAll();
+
+        for (int i = 0 ; i < result.size() ; i ++){
+            optionsList.add(result.get(i).getName());
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                getActivity(), android.R.layout.simple_spinner_item,optionsList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         itemTypeSpinner.setAdapter(adapter);
     }
@@ -57,10 +66,17 @@ public class AddNewItemFragment extends Fragment {
             public void execute(Realm realm) {
                 Item item = realm.createObject(Item.class,Item.getNextId());
                 item.setName(itemName.getText().toString());
-                item.setQuantity(Double.parseDouble(itemQuantity.getText().toString()));
+
+                String itemTypeSelected = itemTypeSpinner.getSelectedItem().toString();
+                RealmQuery<ItemType> query = realm.where(ItemType.class).equalTo("name",itemTypeSelected);
+                RealmResults<ItemType> result = query.findAll();
+
+                item.setItemType(result.first());
             }
         });
-        ((MyCupBoardActivity)getActivity()).showFragment(0);
+
+
+        ((FoodActivity)getActivity()).showFragment(0);
     }
 
 }

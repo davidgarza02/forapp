@@ -14,10 +14,7 @@ public class Item extends RealmObject {
     @PrimaryKey
     int id;
     String name;
-    double quantity;
-    Measure measure;
     ItemType itemType;
-    Date lastUpdate;
     String imageUrl;
 
     public int getId() {
@@ -36,36 +33,12 @@ public class Item extends RealmObject {
         this.name = name;
     }
 
-    public double getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(double quantity) {
-        this.quantity = quantity;
-    }
-
-    public Measure getMeasure() {
-        return measure;
-    }
-
-    public void setMeasure(Measure measure) {
-        this.measure = measure;
-    }
-
     public ItemType getItemType() {
         return itemType;
     }
 
     public void setItemType(ItemType itemType) {
         this.itemType = itemType;
-    }
-
-    public Date getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
     }
 
     public String getImageUrl() {

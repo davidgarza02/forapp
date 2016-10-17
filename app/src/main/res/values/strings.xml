@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Forapp</string>
 
-    <string name="menu_my_cupboard">My cupboard</string>
+    <string name="menu_my_cupboard">Explore food</string>
     <string name="menu_make_a_dish">Make a dish</string>
     <string name="menu_explore_dishes">Explore dishes</string>
     <string name="menu_about">About</string>
@@ -17,6 +17,18 @@
     <string name="hint_item_name">Item name</string>
     <string name="hint_item_quantity">Item quantity</string>
     <string name="button_save">Save</string>
+    <string name="action_settings">Settings</string>
+    <string name="menu_dishes">Explore Dishes</string>
+    <string name="new_dish">Add new dish</string>
+    <string name="hint_recipe_title">Recipe title</string>
+    <string name="ingredients">Ingredients:</string>
+    <string name="button_add_ingredient">Add Ingredient</string>
+    <string name="hint_recipe_description">Recipe description</string>
+    <string name="from_catalog">From catalog</string>
+    <string name="new_item">Nuevo Ingrediente</string>
+    <string name="add_ingredient">Agregar ingrediente</string>
+    <string name="ingredient">Selecciona el ingrediente:</string>
+    <string name="next">Siguiente</string>
 
     <string-array name="planets_array">
         <item>Mercury</item>

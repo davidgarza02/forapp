@@ -17,7 +17,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".cupboard.MyCupBoardActivity"
+        <activity android:name=".cupboard.FoodActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="@string/app_name"/>
+        <activity android:name=".main.exploredishes.ExploreDishesActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="@string/app_name"/>
+        <activity android:name=".main.makedish.MakeDishActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/app_name"/>
     </application>
