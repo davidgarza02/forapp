@@ -71,7 +71,7 @@ public class MakeDishActivity extends AppCompatActivity {
                 firstAppeareance = false;
                 break;
             case 1:
-                fragment = new AddNewRecipeFragment();// TODO: 16/10/16
+                fragment = new ShowPosibleDishesFragment();// TODO: 16/10/16
                 setToolbarTitle(""); // TODO: 16/10/16
                 fragmentTransaction.setCustomAnimations(R.animator.enter_from_right,R.animator.exit_to_left,
                         R.animator.enter_from_left,R.animator.exit_to_right);
