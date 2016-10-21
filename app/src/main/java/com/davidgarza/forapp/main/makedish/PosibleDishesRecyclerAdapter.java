@@ -14,6 +14,8 @@ import com.davidgarza.forapp.R;
 import com.davidgarza.forapp.db.model.Item;
 import com.davidgarza.forapp.db.model.Recipe;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.realm.Realm;
@@ -25,9 +27,9 @@ import io.realm.RealmResults;
  */
 public class PosibleDishesRecyclerAdapter extends RecyclerView.Adapter<PosibleDishesRecyclerAdapter.ViewHolder> {
     private Activity activity;
-    private RealmResults<Recipe> result;
+    private ArrayList<Recipe> result;
 
-    public PosibleDishesRecyclerAdapter(Activity activity, RealmResults<Recipe> result) {
+    public PosibleDishesRecyclerAdapter(Activity activity, ArrayList<Recipe> result) {
         this.activity = activity;
         this.result = result;
     }
