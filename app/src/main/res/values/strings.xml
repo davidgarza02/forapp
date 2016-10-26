@@ -25,19 +25,15 @@
     <string name="button_add_ingredient">Add Ingredient</string>
     <string name="hint_recipe_description">Recipe description</string>
     <string name="from_catalog">From catalog</string>
-    <string name="new_item">Nuevo Ingrediente</string>
-    <string name="add_ingredient">Agregar ingrediente</string>
-    <string name="ingredient">Selecciona el ingrediente:</string>
-    <string name="next">Siguiente</string>
+    <string name="new_item">New ingrediente</string>
+    <string name="add_ingredient">Add ingredient</string>
+    <string name="ingredient">Select ingredient:</string>
+    <string name="next">next</string>
 
-    <string-array name="planets_array">
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
-        <item>Mars</item>
-        <item>Jupiter</item>
-        <item>Saturn</item>
-        <item>Uranus</item>
-        <item>Neptune</item>
-    </string-array>
+    <string name="about_info">My Food Manager es un proyecto de Ingeniería de desarrollo Software que fue realizada por cuatro estudiantes, My Food Manager es una aplicación que nos permite tener un control de nuestros alimentos y nos sugerirá que platillos se pueden realzar con dichos alimentos.</string>
+    <string name="nohaydishes">Sorry, there is no possible dishes with that ingredients.</string>
+    <string name="possible_dishes">Possible dishes</string>
+    <string name="detail_recipe">Recipe</string>
+    <string name="directions_preparations">Directions:</string>
+
 </resources>

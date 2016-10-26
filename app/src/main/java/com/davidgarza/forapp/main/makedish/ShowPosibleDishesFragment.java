@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.davidgarza.forapp.R;
 import com.davidgarza.forapp.db.model.Item;
@@ -27,6 +28,7 @@ import io.realm.RealmResults;
  */
 public class ShowPosibleDishesFragment extends Fragment {
     @BindView(R.id.recycler_showpossibledishes) RecyclerView recyclerPossibleDishes;
+    @BindView(R.id.nodishes) TextView nodishes;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -64,8 +66,10 @@ public class ShowPosibleDishesFragment extends Fragment {
         }
         if(recipesAplicable.size() >= 1){
             recyclerPossibleDishes.setAdapter(new PosibleDishesRecyclerAdapter(getActivity(),recipesAplicable));
+            nodishes.setVisibility(View.GONE);
         }else{
-            // TODO: 20/10/16 show no hay recetas con esos parametros
+            recyclerPossibleDishes.setVisibility(View.GONE);
+            nodishes.setVisibility(View.VISIBLE);
         }
     }
 }

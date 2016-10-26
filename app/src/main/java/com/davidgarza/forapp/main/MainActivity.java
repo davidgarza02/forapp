@@ -1,9 +1,17 @@
 package com.davidgarza.forapp.main;
 
+import android.Manifest;
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.Button;
 
 import com.davidgarza.forapp.R;
 import com.davidgarza.forapp.cupboard.FoodActivity;
@@ -40,6 +48,27 @@ public class MainActivity extends AppCompatActivity {
 
         setupToolbar();
         setupDatabase();
+        verifyStoragePermissions(this);
+    }
+
+    // Storage Permissions
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+
+    public static void verifyStoragePermissions(Activity activity) {
+        // Check if we have write permission
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+            );
+        }
     }
 
     @OnClick(R.id.cardview_cupboard)
@@ -56,6 +85,23 @@ public class MainActivity extends AppCompatActivity {
     void clickMakeDish(){
         Intent i = new Intent(this,MakeDishActivity.class);
         startActivity(i);
+    }
+    @OnClick(R.id.cardview_about)
+    void clickAbout(){
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.fragment_about);
+
+
+        Button okButton = (Button) dialog.findViewById(R.id.button_ok);
+        // if button is clicked, close the custom dialog
+        okButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 
     private void setupToolbar() {
@@ -122,10 +168,19 @@ public class MainActivity extends AppCompatActivity {
                             "Ensalada sencilla de papa",
                             "Chilaquiles"
                     };
+                    String[] images = {
+                            "hamburguesa",
+                            "ensalada",
+                            "chilaquiles"
+                    };
                     for (int i = 0; i < descriptions.length ; i ++) {
                         Recipe recipe = realm.createObject(Recipe.class,Recipe.getNextId());
                         recipe.setTitle(titles[i]);
                         recipe.setDescription(descriptions[i]);
+                        if (i <= 2)
+                            recipe.setImagePath(images[i]);
+                        else
+                            recipe.setImagePath("");
                         RealmList<Item> ingredients = new RealmList<Item>();
                         for (int j = 0; j < ingredientsArray[i].length ; j++){
                             RealmQuery<Item> query = realm.where(Item.class).equalTo("name",ingredientsArray[i][j]);

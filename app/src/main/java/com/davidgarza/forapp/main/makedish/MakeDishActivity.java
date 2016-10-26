@@ -29,6 +29,7 @@ import butterknife.OnClick;
  */
 public class MakeDishActivity extends AppCompatActivity {
     @BindString(R.string.menu_dishes) String strExploreDishes;
+    @BindString(R.string.possible_dishes) String strPossibleDishes;
     @BindString(R.string.menu_make_a_dish) String strMakeDish;
     @BindColor(R.color.white) int clrWhite;
     @BindView(R.id.dishes_toolbar) Toolbar dishesToolbar;
@@ -71,8 +72,8 @@ public class MakeDishActivity extends AppCompatActivity {
                 firstAppeareance = false;
                 break;
             case 1:
-                fragment = new ShowPosibleDishesFragment();// TODO: 16/10/16
-                setToolbarTitle(""); // TODO: 16/10/16
+                fragment = new ShowPosibleDishesFragment();
+                setToolbarTitle(strPossibleDishes);
                 fragmentTransaction.setCustomAnimations(R.animator.enter_from_right,R.animator.exit_to_left,
                         R.animator.enter_from_left,R.animator.exit_to_right);
                 break;

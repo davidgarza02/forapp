@@ -1,3 +1,32 @@
 <resources>
     <string name="app_name">Forapp</string>
+    <string name="menu_my_cupboard">Ver ingredientes</string>
+    <string name="menu_make_a_dish">Hacer un platillo</string>
+    <string name="menu_explore_dishes">Ver platillos</string>
+    <string name="menu_about">Acerca de</string>
+
+    <string name="name_prefix">Ingrediente:</string>
+    <string name="recipes_available">Recetas posibles:</string>
+    <string name="item_type">Tipo ingrediente:</string>
+    <string name="add_item">Agregar</string>
+    <string name="adding_new_item">Agregar ingrediente</string>
+    <string name="hint_item_name">Nombre ingrediente</string>
+    <string name="button_save">Guardar</string>
+    <string name="menu_dishes">Ver platillos</string>
+    <string name="new_dish">Agregar platillo</string>
+    <string name="hint_recipe_title">Titulo receta</string>
+    <string name="ingredients">Ingredientes:</string>
+    <string name="button_add_ingredient">Agregar ingrediente</string>
+    <string name="hint_recipe_description">Preparacion</string>
+    <string name="from_catalog">Del catalogo</string>
+    <string name="new_item">Nuevo Ingrediente</string>
+    <string name="add_ingredient">Agregar ingrediente</string>
+    <string name="ingredient">Selecciona el ingrediente:</string>
+    <string name="next">Siguiente</string>
+
+    <string name="about_info">My Food Manager es un proyecto de Ingeniería de desarrollo Software que fue realizada por cuatro estudiantes, My Food Manager es una aplicación que nos permite tener un control de nuestros alimentos y nos sugerirá que platillos se pueden realzar con dichos alimentos.</string>
+    <string name="nohaydishes">Lo sentimos, no hay recetas que incluyan esta combinacion de ingredientes.</string>
+    <string name="possible_dishes">Recetas posibles</string>
+    <string name="detail_recipe">Receta</string>
+    <string name="directions_preparations">Preparacion:</string>
 </resources>

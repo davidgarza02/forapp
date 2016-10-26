@@ -1,16 +1,21 @@
 package com.davidgarza.forapp.main.exploredishes;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.davidgarza.forapp.R;
 import com.davidgarza.forapp.cupboard.FoodRecyclerAdapter;
 import com.davidgarza.forapp.db.model.Item;
 import com.davidgarza.forapp.db.model.Recipe;
+import com.davidgarza.forapp.detailrecipe.ActivityDetailRecipe;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,9 +47,33 @@ public class DishesRecyclerAdapter extends RecyclerView.Adapter<DishesRecyclerAd
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Recipe recipe = result.get(position);
+        final Recipe recipe = result.get(position);
         holder.recipeTitle.setText(recipe.getTitle());
         holder.recipeDescription.setText(recipe.getDescription());
+
+        if(recipe.getImagePath().equals("hamburguesa")){
+            holder.itemImage.setImageResource(R.drawable.hamburguesa);
+        }else if(recipe.getImagePath().equals("ensalada")){
+            holder.itemImage.setImageResource(R.drawable.papa);
+        }else if(recipe.getImagePath().equals("chilaquiles")){
+            holder.itemImage.setImageResource(R.drawable.chilaquiles);
+        }else if(recipe.getImagePath().equals("")){
+            holder.itemImage.setImageResource(R.drawable.placeholder);
+        }else{
+            Bitmap d = new BitmapDrawable(activity.getResources() , recipe.getImagePath()).getBitmap();
+            int nh = (int) ( d.getHeight() * (512.0 / d.getWidth()) );
+            Bitmap scaled = Bitmap.createScaledBitmap(d, 512, nh, true);
+            holder.itemImage.setImageBitmap(scaled);
+        }
+
+        holder.container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i  = new Intent(activity, ActivityDetailRecipe.class);
+                i.putExtra("recipe_id",recipe.getId());
+                activity.startActivity(i);
+            }
+        });
     }
 
     @Override
@@ -55,6 +84,8 @@ public class DishesRecyclerAdapter extends RecyclerView.Adapter<DishesRecyclerAd
     public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.recipe_title) TextView recipeTitle;
         @BindView(R.id.recipe_description) TextView recipeDescription;
+        @BindView(R.id.item_image) ImageView itemImage;
+        @BindView(R.id.main_container) ViewGroup container;
 
         public ViewHolder(View itemView) {
             super(itemView);

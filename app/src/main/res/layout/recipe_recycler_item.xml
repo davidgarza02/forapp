@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    android:id="@+id/main_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/tools"
     android:orientation="vertical"
@@ -10,6 +12,7 @@
     android:paddingTop="5dp"
     android:paddingBottom="5dp"
     android:background="@color/background_cardviews">
+
     <android.support.v7.widget.CardView
         android:id="@+id/cardview_cupboard"
         android:layout_width="match_parent"
@@ -30,7 +33,7 @@
                     android:id="@+id/item_image"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@drawable/placeholder"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"

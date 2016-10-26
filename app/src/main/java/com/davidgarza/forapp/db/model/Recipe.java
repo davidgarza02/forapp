@@ -14,6 +14,7 @@ public class Recipe extends RealmObject {
     int id;
     String title;
     String description;
+    String imagePath;
     RealmList<Item> items;
 
     public int getId() {
@@ -46,6 +47,14 @@ public class Recipe extends RealmObject {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public static int getNextId(){
